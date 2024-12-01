@@ -1,0 +1,139 @@
+<!-- src/app/expense-list.component.html -->
+<!-- navbar -->
+<app-navbar></app-navbar>
+<!-- Add button to trigger expense form -->
+<button (click)="openExpenseForm()" class="add-expense-button">
+    <i class="fas fa-plus"></i>
+</button>
+
+<!-- Display list of expenses -->
+<div class="p-4  flex justify-center" *ngIf="expenses.length  > 0; else noExpenses">
+    <div *ngIf="!isFormVisible">
+        <div class=" mt-20 grid grid-cols-6 gap-10 bg-orange-500 p-4 text-color rounded-md shadow-md">
+            <span>Workout Name</span>
+            <span>Category</span>
+            <span>Place</span>
+            <span>Time Taken</span>
+            <span>Video Recommendation</span>
+            <span>Action</span>
+        </div>
+        <div class="bg-gray-100   shadow-md p-4  " style="border-bottom-left-radius:6px;
+                                                          border-bottom-right-radius:6px">
+            <div *ngFor="let expense of expenses">
+                <div class="grid grid-cols-6 gap-10 text-color ">
+                    <span>{{ expense.account }}</span>
+                    <span>{{ expense.category }}</span>
+                    <span> {{ expense.name }}</span>
+                    <span> {{ expense.amount }} minutes</span>
+                    <span> <a [href] = "expense.youtubeURL">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="Youtube" width="50" height="60"> 
+                            </a>
+                    </span>
+                    <span>
+                        <button (click)="deleteExpense(expense)">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" 
+                               height="28"  viewBox="0 0 48 48">
+                                <linearGradient id="nyvBozV7VK1PdF3LtMmOna_pre7LivdxKxJ_gr1"
+                                                x1="18.405" x2="33.814"
+                                    y1="10.91" y2="43.484" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#32bdef"></stop>
+                                    <stop offset="1" stop-color="#1ea2e4"></stop>
+                                </linearGradient>
+                                <path fill="url(#nyvBozV7VK1PdF3LtMmOna_pre7LivdxKxJ_gr1)"
+                                    d="M39,10l-2.835,31.181C36.072,42.211,35.208,43,34.174,43H13.826
+                                       c-1.034,0-1.898-0.789-1.992-1.819L9,10H39z">
+                                </path>
+                                <path fill="#0176d0"
+                                    d="M32,7c0-1.105-0.895-2-2-2H18c-1.105,0-2,0.895-2,2c0,0,0,0.634,
+                                       0,1h16C32,7.634,32,7,32,7z">
+                                </path>
+                                <path fill="#007ad9"
+                                    d="M7,9.886L7,9.886C7,9.363,7.358,8.912,7.868,8.8C10.173,8.293,16
+                                       .763,7,24,7s13.827,1.293,16.132,1.8	C40.642,8.912,41,9.363,41,
+                                       9.886v0C41,10.501,40.501,11,39.886,11H8.114C7.499,11,7,10.501,
+                                       7,9.886z">
+                                </path>
+                            </svg>
+                        </button>
+                    </span>
+
+
+
+                </div>
+                <div class="mt-2 mb-2">
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #noExpenses>
+    <div class="flex justify-center mt-20">
+        <h3 class="text-red-400">No workouts added yet</h3>
+    </div>
+</ng-template>
+
+<!-- Expense form -->
+<div *ngIf="isFormVisible" class="expense-form shadow-md bg-white">
+    <div>
+
+        <div class="flex justify-center font-bold text-color">
+            <h3>Workout</h3>
+        </div>
+        <form (ngSubmit)="addExpense()">
+
+            <div class="flex justify-between p-2">
+                <label class="font-bold text-color">
+                    Place:
+                </label>
+                <div>
+                    <input type="text" [(ngModel)]="newExpense.name" name="name"
+                        placeholder="Enter your workout place..." class="p-2 border rounded ml-2 w-full text-color">
+                </div>
+
+            </div>
+            <div class="flex justify-between p-2">
+                <label class="font-bold text-color">
+                    Time Taken (minutes):
+                </label>
+                <div>
+                    <input type="number" [(ngModel)]="newExpense.amount" name="amount"
+                           placeholder="Enter time taken"
+                        class="p-2 border rounded ml-2 w-full text-color" required>
+                </div>
+            </div>
+            <div class="flex justify-between p-2 w-full">
+                <label class="font-bold text-color">
+                    Category:
+                </label>
+                <div>
+                    <select [(ngModel)]="newExpense.category" name="category" class="p-2 border
+                                                                                     rounded text-color " required>
+
+                        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex justify-between p-2">
+                <label class="font-bold text-color">
+                    Workout Name:
+                </label>
+                <div>
+                    <input type="text" [(ngModel)]="newExpense.account" name="account"
+                        placeholder="Enter your workout name..." class="p-2 border rounded ml-2 w-full text-color">
+                </div>
+            </div>
+
+            <div class="flex justify-between p-4 gap-4">
+                <button type="button" (click)="closeExpenseForm() "
+                    class="bg-red-600 shadow-md rounded-md text-white p-2 w-full">Cancel</button>
+
+                <button type="submit" class="bg-blue-600 shadow-md rounded-md text-white 
+                                             p-2 w-full ">Save</button>
+
+            </div>
+
+        </form>
+    </div>
+</div>
