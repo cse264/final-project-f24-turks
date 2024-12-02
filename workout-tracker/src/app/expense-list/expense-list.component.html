@@ -5,7 +5,7 @@
 <button (click)="openExpenseForm()" class="add-expense-button">
     <i class="fas fa-plus"></i>
 </button>
-
+<button class="add-logout-button" (click) = "logout()">logout</button>
 <!-- Display list of expenses -->
 <div class="p-4  flex justify-center" *ngIf="expenses.length  > 0; else noExpenses">
     <div *ngIf="!isFormVisible">
@@ -20,7 +20,7 @@
         <div class="bg-gray-100   shadow-md p-4  " style="border-bottom-left-radius:6px;
                                                           border-bottom-right-radius:6px">
             <div *ngFor="let expense of expenses">
-                <div class="grid grid-cols-6 gap-10 text-color ">
+                <div class="grid grid-cols-6 gap-10 text-color">
                     <span>{{ expense.account }}</span>
                     <span>{{ expense.category }}</span>
                     <span> {{ expense.name }}</span>

@@ -11,7 +11,6 @@
 * Must have interactive UI (of any kind)
 * Must use a library or framework not discussed/used in class
 * Must use an outside REST API in some way (Outside as in external, like the Reddit API, etc)
-
 * Feel free to build off other projects and frameworks. For example [https://github.com/sahat/hackathon-starter] is a great starter project that you can build on top of. 
 
 ### Instructions

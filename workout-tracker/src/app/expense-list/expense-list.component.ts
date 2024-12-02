@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../navbar/navbar.component"
 import { environment } from '../environment';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 @Component({
     selector: 'app-expense-list',
     standalone: true,
-    imports: [CommonModule, FormsModule, NavbarComponent],
+    imports: [CommonModule, FormsModule, NavbarComponent,RouterModule],
     templateUrl: './expense-list.component.html',
     styleUrl: './expense-list.component.less'
 })
@@ -18,9 +20,7 @@ export class ExpenseListComponent {
     newExpense = { name: '', amount: 0, category: '', account: '' , youtubeURL: ''};
     categories = ['Strength Training','Cardiovascular (Cardio) Training','Flexibility and Mobility Training','Balance and Stability Training','Power Training','Endurance Training','Functional Training','Mind-Body Workouts'];
     // Example categories
-    accounts = ['Savings', 'Cash', 'Card']
-    constructor(private expenseService: ExpenseService) { }
-
+    constructor(private expenseService: ExpenseService,private router: Router) {}
     ngOnInit() {
         // Subscribe to the expenses observable
         this.expenseService.expenses$.subscribe(expenses => {
@@ -37,7 +37,7 @@ export class ExpenseListComponent {
         this.newExpense = { name: '', amount: 0, category: '', account: '', youtubeURL: '' };
     }
     setYoutubeURL(): Promise<void> {
-        const query = this.newExpense.category;
+        const query = this.newExpense.account;
         return fetch(`https://www.googleapis.com/youtube/v3/search?key=${environment.youtubeApiKey}&q=${query}&type=video&part=snippet`)
             .then(response => response.json())
             .then(data => {
@@ -50,8 +50,11 @@ export class ExpenseListComponent {
                 console.error('Error fetching YouTube video:', error);
             });
     }
+    logout(){
+        this.router.navigate(['/login']);
+    }
     async addExpense() {
-        await this.setYoutubeURL();
+        //await this.setYoutubeURL(); //uncomment to enable youtube search
         if (this.newExpense.name && this.newExpense.amount && this.newExpense.category
         && this.newExpense.account) {
             console.log('Adding expense:', this.newExpense);

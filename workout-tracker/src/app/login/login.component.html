@@ -1,0 +1,18 @@
+
+<div class="main">  	
+	<input type="checkbox" id="chk" aria-hidden="true">
+		<div class="signup">
+				<label for="chk" aria-hidden="true">FitTrack</label>
+				<p style="text-align: center;">Sign up</p>
+				<input type="text" name="txt" placeholder="User name" required ="" [(ngModel)] = "signupObj.userName">
+				<input type="password" name="pswd" placeholder="Password" required=""  [(ngModel)] = "signupObj.password">
+				<button (click) = "onSignUp()"> Sign up </button>
+		</div>
+
+		<div class="login">
+				<label for="chk" aria-hidden="true">Login</label>
+				<input type="username" name="UserName" placeholder="User Name" required=""  [(ngModel)] = "loginObj.userName">
+				<input type="password" name="pswdd" placeholder="Password" required=""  [(ngModel)] = "loginObj.password">
+				<button (click) = "onLogin()"> Login </button>
+		</div>
+</div>
