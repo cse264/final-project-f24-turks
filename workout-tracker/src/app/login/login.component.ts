@@ -11,13 +11,16 @@ import { debug } from 'console';
 })
 export class LoginComponent implements OnInit {
   signupUsers: any[] = [];
+  paidUsers: any[] = [];
   signupObj: any ={
     userName: '',
     password: '',
+    paidPassword: ''
   };
   loginObj: any = {
     userName: '',
     password: '',
+    paidPassword: ' '
   }
   constructor(private router: Router) {}
   ngOnInit(): void {
@@ -32,10 +35,21 @@ export class LoginComponent implements OnInit {
       alert('Please enter username and password');
       return;
     }
-    this.signupUsers.push(this.signupObj);
-    localStorage.setItem('signupUsers', JSON.stringify(this.signupUsers));
-    alert('User signed up successfully');
-    this.router.navigate(['/expenses']); 
+    if(this.signupObj.paidPassword === 'abc123') {
+      this.paidUsers.push(this.signupObj);
+      localStorage.setItem('paidUsers', JSON.stringify(this.paidUsers));
+      alert('Paid User signed up successfully');
+      //this.router.navigate(['/paid']); 
+      return;
+    }else if(this.signupObj.paidPassword === '') {
+      this.signupUsers.push(this.signupObj);
+      localStorage.setItem('signupUsers', JSON.stringify(this.signupUsers));
+      alert('normal user signed up successfully');
+      //this.router.navigate(['/normalUser']); 
+    }else {
+      alert('Invalid paid password');
+    }
+    
   }
 
   onLogin() {
@@ -43,13 +57,21 @@ export class LoginComponent implements OnInit {
     if (localData != null) {
       this.signupUsers = JSON.parse(localData);
     }
+    const localData2 = localStorage.getItem('paidUsers');
+    if (localData2 != null) {
+      this.paidUsers = JSON.parse(localData2);
+    }
     // Check if the login credentials match any of the signup users
     const user = this.signupUsers.find(user => user.userName === this.loginObj.userName && user.password === this.loginObj.password);
-    if (user) {
-      alert('User found');
-      this.router.navigate([`/expenses/${this.loginObj.userName}`]);
-    } else {
+    const paiduser = this.paidUsers.find(user => user.userName === this.loginObj.userName && user.password === this.loginObj.password);
+    if(user==null && paiduser==null){
       alert('User not found');
+    }else if (paiduser != null &&paiduser.paidPassword === 'abc123') {
+      alert('paid User found');
+      this.router.navigate(['/paid']);
+    } else if (user != null && user.paidPassword === '') {
+      alert('Normal User found');
+      this.router.navigate(['/normalUser']);
     }
   }
 }

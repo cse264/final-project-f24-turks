@@ -1,0 +1,88 @@
+:host {
+    display: block;
+    position: relative;
+    height: 100vh;
+    width: 200vh;
+    overflow: hidden; /* Ensures the video doesn't overflow the element */
+  }
+  
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire element */
+    z-index: -1; /* Keeps the video behind other content */
+  }
+.add-expense-button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 10px;
+    position: fixed;
+    left: 90%;
+    top: 80%;
+
+}
+.add-logout-button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 10px;
+    position: fixed;
+    left: 90%;
+    top: 90%;
+
+}
+.add-expense-button i {
+    font-size: 20px;
+}
+
+.expense-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+
+    z-index: 10;
+
+
+}
+
+.expense-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-form label {
+    margin-bottom: 10px;
+}
+
+.expense-form input {
+    margin-left: 10px;
+}
+.text-color {
+    color: black; /* Change 'blue' to any color you prefer */
+}

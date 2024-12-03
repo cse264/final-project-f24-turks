@@ -6,24 +6,35 @@
     <i class="fas fa-plus"></i>
 </button>
 <button class="add-logout-button" (click) = "logout()">logout</button>
-<!-- Display list of expenses -->
-<div class="p-4  flex justify-center" *ngIf="expenses.length  > 0; else noExpenses">
+
+    <video autoplay muted loop playsinline>
+      <source src="https://media.istockphoto.com/id/1249827913/video/sexy-santa-claus-doing-bicep-curls-in-sport-club-sportsman-training-at-gym.mp4?s=mp4-640x640-is&k=20&c=ny1eBQojeLji-qH22meIJik-hhKjjytLLeJOdZp_LOI=" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+<!-- Display list of paidExpensesList -->
+<div class="p-4  flex justify-center" *ngIf="paidExpensesList.length  > 0; else noExpenses">
     <div *ngIf="!isFormVisible">
-        <div class=" mt-20 grid grid-cols-5 gap-10 bg-orange-500 p-4 text-color rounded-md shadow-md">
+        <div class=" mt-20 grid grid-cols-6 gap-10 bg-orange-500 p-4 text-color rounded-md shadow-md">
             <span>Workout Name</span>
             <span>Category</span>
             <span>Place</span>
             <span>Time Taken</span>
+            <span>Video Recommendation</span>
             <span>Action</span>
         </div>
         <div class="bg-gray-100   shadow-md p-4  " style="border-bottom-left-radius:6px;
                                                           border-bottom-right-radius:6px">
-            <div *ngFor="let expense of expenses">
-                <div class="grid grid-cols-5 gap-10 text-color">
+            <div *ngFor="let expense of paidExpensesList">
+                <div class="grid grid-cols-6 gap-10 text-color">
                     <span>{{ expense.account }}</span>
                     <span>{{ expense.category }}</span>
                     <span> {{ expense.name }}</span>
                     <span> {{ expense.amount }} minutes</span>
+                    <span> <a [href] = "expense.youtubeURL">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="Youtube" width="50" height="60"> 
+                            </a>
+                    </span>
                     <span>
                         <button (click)="deleteExpense(expense)">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" 

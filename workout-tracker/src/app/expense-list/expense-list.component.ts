@@ -36,28 +36,12 @@ export class ExpenseListComponent {
         this.isFormVisible = false;
         this.newExpense = { name: '', amount: 0, category: '', account: '', youtubeURL: '' };
     }
-    setYoutubeURL(): Promise<void> {
-        const query = this.newExpense.account;
-        return fetch(`https://www.googleapis.com/youtube/v3/search?key=${environment.youtubeApiKey}&q=${query}&type=video&part=snippet`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.items && data.items.length > 0) {
-                    this.newExpense.youtubeURL = `https://www.youtube.com/watch?v=${data.items[0].id.videoId}`;
-                }
-                console.log('YouTube video URL:', this.newExpense.youtubeURL);
-            })
-            .catch(error => {
-                console.error('Error fetching YouTube video:', error);
-            });
-    }
     logout(){
         this.router.navigate(['/login']);
     }
     async addExpense() {
-        //await this.setYoutubeURL(); //uncomment to enable youtube search
         if (this.newExpense.name && this.newExpense.amount && this.newExpense.category
         && this.newExpense.account) {
-            console.log('Adding expense:', this.newExpense);
             this.expenseService.addExpense(this.newExpense);
             this.closeExpenseForm();
         }
