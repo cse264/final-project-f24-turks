@@ -1,29 +1,35 @@
 # Final Project
+  ## Team Members
+  - Serkan Bayrak (Frontend Developer)
+  - Selim Eris (Frontend Developer)
+  - Hikmet Eroglu (Backend Developer)
 
-## Due Last day of Class
-## First report due Monday Oct 28, 2024
+  ## Application Name
+  FitTrack
 
-### Build a web app in a team of 4-5
+  ## Description
+  Workout Tracker Pro is a web application designed to help users track their workouts. The app provides different user roles, including free and premium accounts, with additional features available to premium users.
 
-### Requirements:
-* Must have user accounts and different user roles (like user/Admin, free/paid, etc)
-* Must use a database (you choose)
-* Must have interactive UI (of any kind)
-* Must use a library or framework not discussed/used in class
-* Must use an outside REST API in some way (Outside as in external, like the Reddit API, etc)
-* Feel free to build off other projects and frameworks. For example [https://github.com/sahat/hackathon-starter] is a great starter project that you can build on top of. 
+  ## Functionality
+  - **User Accounts and Roles**: The app supports user registration and login, with roles such as free user and premium user. 
+  - **Database**: The app uses MongoDB to store user data, workout logs
+  - **Interactive UI**: Users can log their workouts through an intuitive and interactive interface built with Angular.
+  - **External Library/Framework**: The app uses Angular which was not covered in class.
+  - **External REST API**: The app integrates with the Youtube Search API to provide users with workout information for their logged workouts.
 
-### Instructions
-Build your team and write a document describing your application to me by Monday Oct 28, 2024. Email this document to me and the TA for this course (Xinhui Chen xic721@lehigh.edu)  I will approve your web application idea. In your paper, include:
-* the name of your application
-* Name and roles of all your team members
-* its functionality (how does it meet each of the requirements listed above - list each requirement along with your will fulfill it)
-* user story/use case (what happens when a user visits your application, what can they do, etc)
-* technical design (what is your tech stack)
+  ## User Story/Use Case
+  When a user visits the application, they can sign up for a new account or log in to an existing one. Free users can log their workouts, view basic info such as place, time taken,catagory  and name of the workout. Premium users have access to advanced features such as a cool background, and a youtube recommendation feature. 
 
+  ## Technical Design
+  - **Frontend**: Angular, HTML, CSS
+  - **Backend**: Node.js, Express.js
+  - **Database**: MongoDB
+  - **External API**: Youtube API
 
-### Final deliverable due end of the semester:
-* Codebase in Github Repo
-* README describing your project, with all the information outlined above (team members, application name, description, etc). You will also include detailed instructions of how to install and run your application, and what API keys, databases, etc are needed to run your application.
-* Final Presentation and Demo
-  * You will prepare a 5 minute presentation and demo of your application in class during the last week of classes
+  ## Installation and Running Instructions
+  1. Clone the repository from GitHub.
+  2. Install dependencies using `npm install`.
+  3. Set up environment variables for youtube API keys and database connection.
+  4. Run the application using `ng serve --open`.
+  5. Access the application at `http://localhost:4200`.
+
